@@ -17,6 +17,7 @@
   "author": "Michael",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.0.1",
     "merge-descriptors": "^1.0.1"
   }
 }
