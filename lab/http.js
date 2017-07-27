@@ -17,8 +17,10 @@ $_.requestListener = function(req, res) {
   
   res.writeHead(200,{'Content-type': 'text-plan'});
   res.end('ok');
-  var pathName= url.parse(req.url);
-  console.log(pathName);  
+  var pathName= url.parse(req.url).pathname
+  var query = url.parse(req.url).query
+  log(chalk.green(req))
+  log(chalk.yellow(`Got Request for : ${pathName} and query : ${query}:`));  
 };
 
 $_.listen = function listen() {
