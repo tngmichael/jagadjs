@@ -2,12 +2,25 @@
 
 // https://nodejs.org/api/http.html
 var http = require('http');
+var url = require('url');
+var querystring = require('querystring')
+var fs = require('fs')
+var chalk = require('chalk')
 
+//$ as object of root jagadjs
 var $_ = {};
 
+var log = console.log
+
+//Handle Request 
 $_.requestListener = function(req, res) {
-  console.log('requestListener')
+  
+  res.writeHead(200,{'Content-type': 'text-plan'});
   res.end('ok');
+  var pathName= url.parse(req.url).pathname
+  var query = url.parse(req.url).query
+  log(chalk.green(req))
+  log(chalk.yellow(`Got Request for : ${pathName} and query : ${query}:`));  
 };
 
 $_.listen = function listen() {
@@ -23,7 +36,12 @@ $_.listen = function listen() {
     The requestListener is a function which is automatically added to the 'request' event.
   */
   var server = http.createServer(this.requestListener);
-  console.log('listen:3000')
+
+
+  log(chalk.green(
+	      'JAGADJS => listen:3000'
+     ))
+      
   return server.listen(3000);
 };
 
